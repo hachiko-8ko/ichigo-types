@@ -1,0 +1,13 @@
+{
+    "include": [
+        "../ichigo/src/**/*"
+    ],
+    "compilerOptions": {
+        "target": "es2015",
+        "allowJs": true,
+        // This will raise a TS5053 error but seems to work
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "./types"
+    }
+}
