@@ -68,7 +68,6 @@ export declare class InnerHtmlBindingOptions<TModel = any, TItem extends BoundCo
     id?: string;
     properties?: Record<string, any>;
     attributes?: Record<string, any>;
-    customElement?: Constructable<HTMLElement>;
     replace?: boolean;
     constructor(opt: IComponentBindingOptions<TModel, TItem> & IInnerHtmlOptions);
 }
@@ -82,7 +81,6 @@ export declare class OuterHtmlBindingOptions<TModel = any, TItem extends BoundCo
     id?: string;
     properties?: Record<string, any>;
     attributes?: Record<string, any>;
-    customElement?: Constructable<HTMLElement>;
     replace?: boolean;
     constructor(opt: IComponentBindingOptions<TModel, TItem> & IOuterHtmlOptions);
 }

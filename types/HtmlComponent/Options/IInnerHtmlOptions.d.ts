@@ -1,4 +1,3 @@
-import { Constructable } from '../../System/Types/Constructable';
 /**
  * Create a new component setting the inner HTML
  */
@@ -8,7 +7,6 @@ export interface IInnerHtmlOptions {
     id?: string;
     properties?: Record<string, any>;
     attributes?: Record<string, any>;
-    customElement?: Constructable<HTMLElement>;
 }
 /**
  * Try to provide some custom classes to help clean up the mess that TypeScript and VSCode provides whenever
@@ -21,7 +19,6 @@ export declare class InnerHtmlOptions implements IInnerHtmlOptions {
     id?: string;
     properties?: Record<string, any>;
     attributes?: Record<string, any>;
-    customElement?: Constructable<HTMLElement>;
     replace?: boolean;
     constructor(opt: IInnerHtmlOptions);
 }
