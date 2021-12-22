@@ -7,8 +7,10 @@ import { IInnerHtmlOptions } from './Options/IInnerHtmlOptions';
 import { IOuterHtmlOptions } from './Options/IOuterHtmlOptions';
 export declare type InjectOptions = ({
     replace?: false;
+    parent?: Element;
 } | ({
     replace: true;
+    parent?: Element;
 } & (IInnerHtmlOptions | IOuterHtmlOptions)) | string);
 /**
  * A class with a content property that points to something on the page, along with some of helper methods.
@@ -29,20 +31,14 @@ export declare abstract class Component<TElement extends HTMLElement = HTMLEleme
      *
      * Accepts Keyword Arguments.
      */
-    static inject<TElement extends HTMLElement>(selector?: string | HTMLElement | NodeListOf<HTMLElement> | HTMLElement[] | {
-        parent?: Element;
-        selector: string;
-    }, options?: InjectOptions | undefined, constructor?: Constructable<Component<TElement>>): Array<Component<TElement>>;
-    protected static _inject<T extends Component<HTMLElement>>(selector: string | HTMLElement | NodeListOf<HTMLElement> | HTMLElement[] | {
-        parent?: Element;
-        selector: string;
-    }, options: Record<string, any>, replacerFunction: (element: HTMLElement) => T, converterFunction: (element: HTMLElement) => T): T[];
+    static inject<TElement extends HTMLElement>(selector?: string | HTMLElement | NodeListOf<HTMLElement> | HTMLElement[], options?: InjectOptions | undefined, constructor?: Constructable<Component<TElement>>): Array<Component<TElement>>;
+    protected static _inject<T extends Component<HTMLElement>>(selector: string | HTMLElement | NodeListOf<HTMLElement> | HTMLElement[], options: Record<string, any>, replacerFunction: (element: HTMLElement) => T, converterFunction: (element: HTMLElement) => T): T[];
     protected static _mergePropertiesAndAttributes(existingElement: HTMLElement, options: Record<string, any>): Record<string, any>;
     protected static _getOptions(options?: string | Record<string, any>): Record<string, any>;
     protected static _replaceElement(existingElement: HTMLElement, component: Component<HTMLElement>): void;
     private static _replaceElementWithComponent<TElement>(existingElement, options, constructor);
     private static _convertElementToComponent<TElement>(existingElement, constructor);
-    private static _lookUpContainersToInject(selector?);
+    private static _lookUpContainersToInject(selector?, parent?);
     content: TElement;
     id: string;
     innerHTML: string;
@@ -115,4 +111,11 @@ export declare abstract class Component<TElement extends HTMLElement = HTMLEleme
      */
     addClass(className: string): this;
     addClass(classNames: string[]): this;
+    /**
+     * Because addInlineEventListeners() searches all the way down, into nested components, it can't be called
+     * by default. It just throws errors on all but simple test cases. But because these events almost always exist
+     * internal to the component (e.g. on buttons), it can't be limited. This can be confusing without some kind of
+     * message.
+     */
+    private _checkInlineEventListeners();
 }
