@@ -20,7 +20,7 @@ export declare type BoundInjectOptions<TModel = any, TItem extends BoundComponen
  * A super-basic component that allows configuration of data-binding functions using specially-named HTML attributes, as in Angular
  * or Vue.
  */
-export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, TModel = any> extends Component<TElement> implements IView<TElement, TModel> {
+export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, TModel = any, TParent extends BoundComponent = any> extends Component<TElement> implements IView<TElement, TModel> {
     /**
      * Use this to convert elements to components. It's most useful for custom tags, for example, <my-component></my-component>.
      * It will become <div id="foo">Whatever the component content is</div>.
@@ -39,7 +39,8 @@ export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, 
     private static _replaceElementWithBoundComponent<TElement, TModel>(existingElement, viewModel, options, constructor);
     private static _convertElementToBoundComponent<TElement, TModel>(existingElement, viewModel, options, constructor);
     viewModel: TModel;
-    private _name?;
+    loopParent?: TParent;
+    private _id?;
     private _attributeBindings;
     private _valueAttribute?;
     private _writeTargets;
