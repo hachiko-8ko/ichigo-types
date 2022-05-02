@@ -85,16 +85,16 @@ export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, 
     setTemplate(templateText: string, update?: boolean): this;
     setHtmlTemplate(templateProperty?: string, update?: boolean): this;
     setTextTemplate(templateProperty?: string, update?: boolean): this;
-    setLoop(source: string, fragment: DocumentFragment | string, skipPostProcess?: boolean, update?: boolean): this;
+    setLoop(source: string, fragment: DocumentFragment | string, skipPostProcess?: boolean, update?: boolean, otherComponentId?: string): this;
     removeLoop(update?: boolean): this;
-    setValueAttribute(source?: string | undefined, update?: boolean): this;
-    setVisibility(source?: string | undefined, negative?: boolean, update?: boolean): this;
-    addAttributeMapping(attribute: string, source?: string, update?: boolean): this;
-    addBooleanAttributeMapping(attribute: string, source?: string, negative?: boolean, update?: boolean): this;
+    setValueAttribute(source?: string | undefined, update?: boolean, otherComponentId?: string): this;
+    setVisibility(source?: string | undefined, negative?: boolean, update?: boolean, otherComponentId?: string): this;
+    addAttributeMapping(attribute: string, source?: string, update?: boolean, otherComponentId?: string): this;
+    addBooleanAttributeMapping(attribute: string, source?: string, negative?: boolean, update?: boolean, otherComponentId?: string): this;
     removeAttributeMapping(attribute: string, update?: boolean): this;
-    setCssClass(cls?: string | undefined, update?: boolean): this;
-    setCssStyle(style?: string | undefined, update?: boolean): this;
-    addCssClassSwitch(cls: string, source?: string, negative?: boolean, update?: boolean): this;
+    setCssClass(cls?: string | undefined, update?: boolean, otherComponentId?: string): this;
+    setCssStyle(style?: string | undefined, update?: boolean, otherComponentId?: string): this;
+    addCssClassSwitch(cls: string, source?: string, negative?: boolean, update?: boolean, otherComponentId?: string): this;
     removeCssClassSwitch(cls: string, update?: boolean): this;
     addWriteEvent(): this;
     addWriteTarget(target?: string, update?: boolean): this;
@@ -120,8 +120,8 @@ export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, 
      * Override this if you need to do something else after the loop is added to the DOM.
      */
     protected loopPostProcess(row: any, addedContent: Node[], allRows: Iterable<any>, previousContent: DocumentFragment): void;
-    private _getStringValue(name, skipEscape?);
-    private _getUntypedValue(name);
+    private _getStringValue(name, skipEscape?, sourceComponentId?);
+    private _getUntypedValue(name, sourceComponentId?);
     private _updateHtmlReplacements();
     private _configureComponentBindings();
     private _parseAttributeName(name);
