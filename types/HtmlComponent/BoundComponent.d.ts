@@ -40,6 +40,7 @@ export declare class BoundComponent<TElement extends HTMLElement = HTMLElement, 
     private static _convertElementToBoundComponent<TElement, TModel>(existingElement, viewModel, options, constructor);
     viewModel: TModel;
     loopParent?: TParent;
+    paused: boolean;
     private _id?;
     private _attributeBindings;
     private _valueAttribute?;
